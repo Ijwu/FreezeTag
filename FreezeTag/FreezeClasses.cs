@@ -98,18 +98,15 @@ namespace FreezeTag
         }
         public bool CheckIfAllTagged()
         {
-            int amt = 0;
             lock (Players)
             {
                 foreach (FTPlayer ply in Players)
                 {
-                    if (ply.Tagged)
-                        amt++;
+                    if (!ply.Tagged)
+                        return false;
                 }
-            }
-            if (amt == Amount)
                 return true;
-            return false;
+            }
         }
         public void AddMember(int index)
         {

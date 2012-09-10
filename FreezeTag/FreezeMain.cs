@@ -168,6 +168,11 @@ namespace FreezeTag
         }
         public static void StartGame(CommandArgs args)
         {
+            if (FreezeTools.GetFTPlayerByID(args.Player.Index).CurrentGame != null)
+            {
+                args.Player.SendMessage("You may not start a new FreezeTag game nor join an existing FreezeTag game while a part of a FreezeTag game.", Color.Red);
+                return;
+            }
             switch (args.Parameters.Count)
             {
                 default:
